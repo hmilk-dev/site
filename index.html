@@ -299,13 +299,6 @@
       gap: 7px;
     }
 
-    .status-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--green);
-    }
-
     .footer-links {
       font-family: var(--mono);
       font-size: 11px;
@@ -319,6 +312,42 @@
       text-decoration: none;
     }
     .footer-links a:hover { color: var(--muted); }
+
+    /* ── Void hover ── */
+    .void-on-hover {
+      position: relative;
+      overflow: hidden;
+    }
+    .void-on-hover::before,
+    .void-on-hover::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 0.2s;
+      pointer-events: none;
+      border-radius: inherit;
+    }
+    .void-on-hover::before {
+      background: rgba(0,0,0,0.65);
+      z-index: 1;
+    }
+    .void-on-hover::after {
+      background:
+        linear-gradient(to bottom right, transparent calc(50% - 0.75px), rgba(255,255,255,0.18) calc(50% - 0.75px), rgba(255,255,255,0.18) calc(50% + 0.75px), transparent calc(50% + 0.75px)),
+        linear-gradient(to bottom left, transparent calc(50% - 0.75px), rgba(255,255,255,0.18) calc(50% - 0.75px), rgba(255,255,255,0.18) calc(50% + 0.75px), transparent calc(50% + 0.75px));
+      z-index: 2;
+    }
+    .void-on-hover:hover::before,
+    .void-on-hover:hover::after { opacity: 1; }
+
+    /* ── Job Scout link card ── */
+    a.tool-card {
+      display: block;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    a.tool-card:hover { border-color: var(--amber-dim); }
 
     /* ── Mobile ── */
     @media (max-width: 520px) {
@@ -336,7 +365,7 @@
       <ul class="nav-links">
         <li><a href="#tools">tools</a></li>
         <li><a href="#stack">stack</a></li>
-        <li><a href="https://github.com/ghallman/hmilk-dev" target="_blank" rel="noopener">github</a></li>
+        <li><a href="https://github.com/hmilk-dev/site" target="_blank" rel="noopener">github</a></li>
         <li><a class="disabled" href="#docs">docs</a></li>
       </ul>
     </nav>
@@ -354,7 +383,7 @@
 
     <p class="section-label" id="tools">// tools</p>
     <div class="tools-grid">
-      <div class="tool-card">
+      <a href="https://jobs.hmilk.dev" class="tool-card">
         <div class="tool-card-top">
           <div class="tool-icon">&#128269;</div>
           <span class="tag wip">building</span>
@@ -362,10 +391,10 @@
         <div class="tool-name">Job Scout</div>
         <div class="tool-desc">Daily AI-curated job matches based on your resume and goals. No spam, no upsells.</div>
         <div class="tool-footer">
-          <span class="tool-url">jobs.hmilk.dev</span>
+          <span class="tool-url">jobs.hmilk.dev ↗</span>
         </div>
-      </div>
-      <div class="tool-card">
+      </a>
+      <div class="tool-card void-on-hover">
         <div class="tool-card-top">
           <div class="tool-icon">&#128202;</div>
           <span class="tag plan">Q3 2026</span>
@@ -376,7 +405,7 @@
           <span class="tool-url">planned</span>
         </div>
       </div>
-      <div class="tool-card">
+      <div class="tool-card void-on-hover">
         <div class="tool-card-top">
           <div class="tool-icon">&#128203;</div>
           <span class="tag plan">Q4 2026</span>
@@ -396,7 +425,7 @@
       <div class="stack-item"><div class="dot"></div><div><div class="stack-name">Neon Postgres</div><div class="stack-role">database</div></div></div>
       <div class="stack-item"><div class="dot amber"></div><div><div class="stack-name">Claude Haiku 4.5</div><div class="stack-role">AI scoring</div></div></div>
       <div class="stack-item"><div class="dot"></div><div><div class="stack-name">Next.js</div><div class="stack-role">frontend</div></div></div>
-      <div class="stack-item"><div class="dot"></div><div><div class="stack-name">~$45/mo total</div><div class="stack-role">dev-absorbed</div></div></div>
+      <div class="stack-item"><div class="dot"></div><div><div class="stack-name">~$45/mo est.</div><div class="stack-role">dev-absorbed</div></div></div>
     </div>
 
     <p class="section-label">// get involved</p>
@@ -406,17 +435,16 @@
         <p>All tools are free, no account required for basic access. Build with us or just use what's here.</p>
         <a href="#tools" class="btn">browse tools ↗</a>
       </div>
-      <div class="cta-card">
+      <div class="cta-card void-on-hover">
         <h3>Contribute or suggest</h3>
         <p>Have a tool idea that would help people? See something broken? Open an issue or pull request.</p>
-        <a href="https://github.com/ghallman/hmilk-dev" target="_blank" rel="noopener" class="btn">github ↗</a>
+        <a href="https://github.com/hmilk-dev/site" target="_blank" rel="noopener" class="btn">github ↗</a>
       </div>
     </div>
 
     <footer>
       <div class="status">
-        <div class="status-dot"></div>
-        all systems operational
+        no monitoring yet
       </div>
       <div class="footer-links">
         <a href="https://hmilk.dev">hmilk.dev</a>
